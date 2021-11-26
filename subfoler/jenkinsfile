@@ -20,5 +20,5 @@ pipeline{
 		unstable{
 			bat 'echo i will executed on unstable'
 		}
-
+	}
 }
