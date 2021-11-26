@@ -7,7 +7,7 @@ pipeline{
     environment{
         tomcatWebLocation="\"c:\\apache-tomcat-9.0.55\\webapps\""
         tomcatBinLocation="\"c:\\apache-tomcat-9.0.55\\bin\""
-        buildLocation="C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\dxc_web_app2\\target\\WebApp.war"
+        buildLocation="C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\dxc_maven_build_file_from_scm_deploy_on_tomcat_pipeline_job\\mywebapp\\target\\mywebapp.war"
     }
  
     stages{
@@ -22,7 +22,7 @@ pipeline{
         stage('Maven Build'){
             steps{
             bat """
-                cd WebApp
+                cd mywebapp
                 mvn clean package
             """
             }
