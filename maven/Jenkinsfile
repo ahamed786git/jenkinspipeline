@@ -1,0 +1,15 @@
+pipeline{
+	agent any
+	tools{
+		maven "jenkins-maven"
+	}
+	stages{
+		stage('Build'){
+			steps{
+				git 'https://github.com/jenkins-docs/simple-java-maven-app.git'
+				bat 'echo maven clean test package'
+			}
+		}
+	}
+
+}
