@@ -1,0 +1,24 @@
+pipeline{
+	agent any
+	stages{
+		stage('example stage'){
+			steps{
+				bat 'echo in stage'
+			}
+		}
+	}
+	post{
+		always{
+			bat 'echo i will always get executed'
+		}
+		success{
+			bat 'echo i will executed on success'
+		}
+		failue{
+			bat 'echo i will executed on failure'
+		}
+		unstable{
+			bat 'echo i will executed on unstable'
+		}
+
+}
