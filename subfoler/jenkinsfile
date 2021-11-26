@@ -1,24 +1,22 @@
 pipeline{
 	agent any
 	stages{
-		stage('example stage'){
+		stage('Build'){
 			steps{
-				bat 'echo in stage'
+				echo 'Building ...'
 			}
 		}
-	}
-	post{
-		always{
-			bat 'echo i will always get executed'
+		stage('Test'){
+		    steps{
+		        echo 'Test'
+		    }
+		    
 		}
-		success{
-			bat 'echo i will executed on success'
+		stage('Deploy'){
+		    steps{
+		        echo 'Deploying...'
+		    }
 		}
-		failue{
-			bat 'echo i will executed on failure'
-		}
-		unstable{
-			bat 'echo i will executed on unstable'
 		}
 	}
-}
+	
