@@ -1,0 +1,43 @@
+pipeline{
+    agent any
+ 
+    tools{
+        maven "jenkins-maven"
+    }
+    environment{
+        tomcatWebLocation="\"c:\\apache-tomcat-9.0.55\\webapps\""
+        tomcatBinLocation="\"c:\\apache-tomcat-9.0.55\\bin\""
+        buildLocation="C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\dxc_web_app2\\target\\WebApp.war"
+    }
+ 
+    stages{
+ 
+        stage('Git Checkout'){
+            steps{
+ 
+            git 'https://github.com/codewithz/dxc-web-app.git'
+            }
+        }
+ 
+        stage('Maven Build'){
+            steps{
+            bat """
+                cd WebApp
+                mvn clean package
+            """
+            }
+        }
+ 
+    }
+ 
+    post{
+        success{
+ 
+            bat """
+                copy %buildLocation%  %tomcatWebLocation%
+                %tomcatBinLocation%\\startup.bat
+            """
+ 
+        }
+    }
+}
