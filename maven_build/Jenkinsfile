@@ -1,3 +1,22 @@
-environment{
-	jarLocation='C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\DXC_simple_maven_build_test_and_deploy\\target\\my-app-1.0-SNAPSHOT'
+pipeline{
+	agent any
+	environment{
+		jarLocation='C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\DXC_simple_maven_build_test_and_deploy\\target\\my-app-1.0-SNAPSHOT'
+	}
+	tools{
+		maven "jenkins-maven"
+	}
+	stages{
+		stage('Build'){
+			steps{
+				git 'https://github.com/jenkins-docs/simple-java-maven-app.git'
+				bat 'echo maven clean test package'
+			}
+		}
+	}
+	post{
+		success{
+			bat 'java -jar %jarLocation%
+		}
+	}
 }
