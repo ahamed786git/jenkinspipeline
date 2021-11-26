@@ -14,7 +14,7 @@ pipeline{
 		success{
 			bat 'echo i will executed on success'
 		}
-		failue{
+		failure{
 			bat 'echo i will executed on failure'
 		}
 		unstable{
